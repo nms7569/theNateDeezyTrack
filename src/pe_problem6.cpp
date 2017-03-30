@@ -2,11 +2,12 @@
 
 void pe_problem6(void){
     std::cout << "Problem #6" << std::endl;
+    clock_t my_time;
+    my_time = clock();
+
     unsigned long int finalValue;
     unsigned long int sumOfSquares = 0;
     unsigned long int squareSum = 0;
-    clock_t my_time;
-    my_time = clock();
 
     for (int i; i <= 100; ++i){
 	    sumOfSquares += i*i;
