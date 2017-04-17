@@ -5,8 +5,8 @@
 #include <fstream>
 #include <ctime>
 #include <vector>
-#include <boost\filesystem.hpp>
-#include <boost\algorithm\string.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
 
 void pe_problem22(void);
 

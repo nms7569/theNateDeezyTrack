@@ -13,7 +13,7 @@
  */
 //RK45::RK45(const callback_function& new_zdot, const double& new_t0, const double& new_tf, const double& new_h, const boost::numeric::ublas::vector<double>& new_z0){
  	//this->zdot = new_zdot;
-	RK45::RK45(const EOM& new_eom, const double& new_t0, const double& new_tf, const double& new_h, const std::vector<double>& new_z0, const bool& new_report){
+RK45::RK45(EOM * new_eom, const double & new_t0, const double & new_tf, const double & new_h, const std::vector<double> & new_z0, const bool & new_report){
 	this->eom = new_eom;
 	this->t0 = new_t0;
 	this->tf = new_tf;
@@ -21,7 +21,7 @@
 	this->z0 = new_z0;
 	this->print_report = new_report;
 	//this->state_history
-}
+};
 
 /**
  * Name:    rk45::integrate
@@ -36,7 +36,7 @@ std::vector<double> RK45::integrate(){
 //	boost::numeric::ublas::vector<double> zn = this->z0;
 //	boost::numeric::ublas::vector<double> k1, k2, k3, k4;
 	std::vector<double> zn = this->z0;
-	std::vector<double> k1 (zn.size(),0), k2(zn.size(),0), k3(zn.size(),0), k4(zn.size(),0), kbuffer(zn.size(),0), zbuffer(zn.size(),0);
+	std::vector<double> k1 (zn.size(),0.0), k2(zn.size(),0.0), k3(zn.size(),0.0), k4(zn.size(),0.0), kbuffer(zn.size(),0.0), zbuffer(zn.size(),0.0);
 	std::ofstream outfile ("results.txt",std::ofstream::binary);
 	
 	outfile << "t,";
@@ -57,26 +57,26 @@ std::vector<double> RK45::integrate(){
 	*/
 	
 	while(tn <= this->tf){
-		this->eom::evaluate(zn, kbuffer);
+		this->eom->evaluate(zn, kbuffer);
 		k1 = kbuffer;
 
 		//for (std::vector<double>::iterator it1 = z0.begin(), std::vector<double>::iterator it2 = k1.begin(); it1 != z0.end(); ++it1,++it2){
 		for(int i = 0; i < zn.size(); ++i){
 			zbuffer[i] = zn[i] + (this->h/2.0)*k1[i];
 		}
-		this->eom::evaluate(zbuffer, kbuffer);
+		this->eom->evaluate(zbuffer, kbuffer);
 		k2 = kbuffer;
 
 		for (int i = 0; i < zn.size(); ++i){
 			zbuffer[i] = zn[i] + (this->h/2.0)*k2[i];
 		}
-		this->eom::evaluate(zbuffer, kbuffer);
+		this->eom->evaluate(zbuffer, kbuffer);
 		k3 = kbuffer;
 
 		for (int i = 0; i < zn.size(); ++i){
 			zbuffer[i] = zn[i] + (this->h)*k3[i];
 		}
-		this->eom::evaluate(zbuffer, kbuffer);
+		this->eom->evaluate(zbuffer, kbuffer);
 		k4 = kbuffer;
 
 		for (int i = 0; i < zn.size(); ++i){
@@ -85,45 +85,57 @@ std::vector<double> RK45::integrate(){
 		tn += this->h;
 		}
 	}
+	outfile.close();
 	return zn;
-}
+};
 
-void RK45::set_eom(EOM& new_eom){
+void RK45::set_eom(EOM * new_eom){
 	this->eom = new_eom;
-}
-EOM RK45::get_eom(){
+};
+
+EOM * RK45::get_eom(){
 	return this->eom;
-}
+};
+
 void RK45::set_t0(double& new_t0){
 	this->t0 = new_t0;
-}
+};
+
 double RK45::get_t0(){
 	return this->t0;
-}
+};
+
 void RK45::set_tf(double& new_tf){
 	this->tf = new_tf;
-}
+};
+
 double RK45::get_tf(){
 	return this->tf;
-}
+};
+
 void RK45::set_h(double& new_h){
 	this->h = new_h;
-}
+};
+
 double RK45::get_h(){
 	return this->h;
-}
+};
+
 void RK45::set_z0(std::vector<double>& new_z0){
 	this->z0 = new_z0;
-}
+};
+
 std::vector<double> RK45::get_z0(){
 	return this->z0;
-}
+};
+
 void RK45::set_report(bool& new_report){
 	this->print_report = new_report;
-}
+};
+
 bool RK45::get_report(){
 	return this->print_report;
-}
+};
 
 /*
 void RK45::report(void){

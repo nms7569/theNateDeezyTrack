@@ -28,7 +28,9 @@ set(COMMON_FILES main.cpp)
 
 set(EULER_FILES pe_problem14.h pe_problem14.cpp pe_problem22.h pe_problem22.cpp pe_problem6.h pe_problem6.cpp)
 
-add_executable(theNateDeezyTrack ${COMMON_FILES} ${EULER_FILES})
+set(OBJECT_FILES RK45.h RK45.cpp EOM.h EOM.cpp)
+
+add_executable(theNateDeezyTrack ${COMMON_FILES} ${EULER_FILES} ${OBJECT_FILES})
 
 if (RUN_IN_MPI_MODE)
 target_link_libraries(theNateDeezyTrack ${Boost_LIBRARIES} ${MPI_CXX_LIBRARIES})

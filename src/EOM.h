@@ -15,11 +15,11 @@ public:
 	// public member variables
 
 	// public methods
-	void evaluate(const std::vector<double> & initial_state, std::vector<double> & derivatives);
+	virtual void evaluate(const std::vector<double> & initial_state, std::vector<double> & derivatives) = 0;
 };
 
 class ThreeD_Pendulum: public EOM {
-
+public:
 	// constructor
 	ThreeD_Pendulum(const double & m, const double & L);
 
@@ -32,6 +32,7 @@ class ThreeD_Pendulum: public EOM {
 	double L;
 
 	// public methods
+	void evaluate(const std::vector<double> & initial_state, std::vector<double> & derivatives);
 	void set_length(const double & L);
 	void set_mass(const double & m);
 };

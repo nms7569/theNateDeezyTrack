@@ -1,9 +1,11 @@
 #ifndef RK45_INCLUDED
 #define RK45_INCLUDED
+
 #include <boost/numeric/ublas/vector.hpp>
 #include <vector>
 #include <iostream>
 #include <fstream>
+
 #include "EOM.h"
 
 /**
@@ -23,16 +25,28 @@
  */
 class RK45{
 	public:
-		//constructors
+		// callback_function zdot;
+
+		// Constructors
 		//RK45(const callback_function& new_zdot, const double& new_t0, const double& new_tf, const double& new_h, const boost::numeric::ublas::vector<double>& new_z0);
-		RK45(const EOM& new_eom, const double& new_t0, const double& new_tf, const double& new_h, const std::vector<double>& new_z0, const bool& new_report);
+		RK45(EOM * new_eom, const double & new_t0, const double & new_tf, const double & new_h, const std::vector<double> & new_z0, const bool & new_report = false);
+		
+		// Destructor
 		~RK45(){};
+
+		// Member Variables 
+		class EOM * eom;
+		double t0;
+		double tf;
+		double h;
+		std::vector<double> z0;
+		bool print_report;
 
 		//getter & setters
 		//void set_zdot(callback_function& new_zdot);
 		//callback_function get_zdot();
-		void set_eom(EOM& new_eom);
-		EOM get_eom();
+		void set_eom(EOM * new_eom);
+		EOM * get_eom();
 
 		void set_t0(double& new_t0);
 		double get_t0();
@@ -53,13 +67,5 @@ class RK45{
 		std::vector<double> integrate();
 		void report(void);
 
-	private:
-		//callback_function zdot;
-		EOM eom;
-		double t0;
-		double tf;
-		double h;
-		std::vector<double> z0;
-		bool print_report;
-}
+};
 #endif
