@@ -16,7 +16,7 @@ public:
 
 	// public methods
 	void evaluate(const std::vector<double> & initial_state, std::vector<double> & derivatives);
-}
+};
 
 class ThreeD_Pendulum: public EOM {
 
@@ -34,6 +34,6 @@ class ThreeD_Pendulum: public EOM {
 	// public methods
 	void set_length(const double & L);
 	void set_mass(const double & m);
-}
+};
 
 #endif
