@@ -15,10 +15,10 @@ void ThreeD_Pendulum::evaluate(const std::vector<double> & initial_state, std::v
 	derivatives[3] = -2.0*initial_state[3]*initial_state[1]*std::cos(initial_state[0])/std::sin(initial_state[0]);
 };
 
-void set_length(const double & L){
+void ThreeD_Pendulum::set_length(const double & L){
 	this->L = L;
 };
 
-void set_mass(const double & m){
+void ThreeD_Pendulum::set_mass(const double & m){
 	this->m = m;
 };
