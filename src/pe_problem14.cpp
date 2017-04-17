@@ -1,4 +1,12 @@
 #include "pe_problem14.h"
+/**
+ * try initializing a vector with onw million elements
+ * then any time a number is reached in a collatz sequence
+ * remove it from the vector of possible root values
+ * since it cant ever be longer than the current sequence.
+ *
+ * also switch over to chrono for better time resolution.
+ */
 
 void pe_problem14(void){
     std::cout << "Problem #14" << std::endl;

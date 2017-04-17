@@ -2,7 +2,7 @@
 #define PE_PROBLEM14_H_INCLUDED
 
 #include <iostream>
-#include <ctime>
+#include <chrono>
 #include <vector>
 
 void pe_problem14(void);

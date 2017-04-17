@@ -6,15 +6,16 @@ void pe_problem22(void){
     myTime = clock();
     std::ofstream fileOut;
     std::ifstream fileIn;
-    string p = "~/Downloads/p022_names.txt";
-    string line;
+    std::string p = "~/Downloads/p022_names.txt";
+    std::string line;
+    std::vector<string> names;
 
     if (boost::filesystem::exists(p)){
 	    if (boost::filesystem::is_regular_file(p)){
 		    fileIn.open(p);
 		    if (fileIn.is_open()){
 			    while(std::getline(fileIn,line)){
-
+				    boost::split(names,line,"\",\"");
 			    }
 			    fileIn.close();
 		    }

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <boost/filesystem.hpp> 
 
 #include "pe_problem6.h"
 #include "pe_problem14.h"
