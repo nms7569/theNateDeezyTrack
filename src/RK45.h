@@ -25,7 +25,7 @@ class RK45{
 	public:
 		//constructors
 		//RK45(const callback_function& new_zdot, const double& new_t0, const double& new_tf, const double& new_h, const boost::numeric::ublas::vector<double>& new_z0);
-		RK45(const EOM& new_eom, const double& new_t0, const double& new_tf, const double& new_h, const boost::numeric::ublas::vector<double>& new_z0, const bool& new_report);
+		RK45(const EOM& new_eom, const double& new_t0, const double& new_tf, const double& new_h, const std::vector<double>& new_z0, const bool& new_report);
 		~RK45(){};
 
 		//getter & setters
@@ -43,14 +43,14 @@ class RK45{
 		void set_h(double& new_h);
 		double get_h();
 
-		void set_z0(boost::numeric::ublas::vector<double>& new_z0);
-		boost::numeric::ublas::vector<double> get_z0();
+		void set_z0(std::vector<double>& new_z0);
+		std::vector<double> get_z0();
 
 		void set_report(bool& new_report);
 		bool get_report();
 
 		//behaviors
-		boost::numeric::ublas::vector<double> integrate();
+		std::vector<double> integrate();
 		void report(void);
 
 	private:
@@ -59,7 +59,7 @@ class RK45{
 		double t0;
 		double tf;
 		double h;
-		boost::numeric::ublas::vector<double> z0;
+		std::vector<double> z0;
 		bool print_report;
 }
 #endif
