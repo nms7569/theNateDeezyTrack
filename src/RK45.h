@@ -1,3 +1,5 @@
+#ifndef RK45_INCLUDED
+#define RK45_INCLUDED
 #include <boost/numeric/ublas/vector.hpp>
 
 /**
@@ -18,22 +20,22 @@ typedef boost::numeric::ublas::vector<double> (*callback_function)(double, boost
 class RK45{
 	public:
 		//constructors
-		RK45(callback_function, double, double, double, boost::numeric::ublas::vector<double>);
+		RK45(const callback_function& new_zdot, const double& new_t0, const double& new_tf, const double& new_h, const boost::numeric::ublas::vector<double>& new_z0);
 
 		//getter & setters
-		void setFunc(callback_function);
+		void setFunc(callback_function& new_zdot);
 		callback_function getFunc();
 
-		void set_t0(double);
+		void set_t0(double& new_t0);
 		double get_t0();
 
-		void set_tf(double);
+		void set_tf(double& new_t0);
 		double get_tf();
 
-		void set_h(double);
+		void set_h(double& new_h);
 		double get_h();
 
-		void set_z0(boost::numeric::ublas::vector<double>);
+		void set_z0(boost::numeric::ublas::vector<double>& new_z0);
 		boost::numeric::ublas::vector<double> get_z0();
 
 		//behaviors
@@ -46,3 +48,4 @@ class RK45{
 		double h;
 		boost::numeric::ublas::vector<double> z0;
 }
+#endif
